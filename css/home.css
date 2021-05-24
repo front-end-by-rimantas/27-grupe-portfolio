@@ -1,0 +1,10 @@
+/* base import */
+@import './base/reset.css';
+
+/* 3rd-party import */
+@import './3rd-party/font-awesome.min.css';
+
+/* components import */
+@import './components/button.css';
+
+/* CUSTOM STYLES FOR HOME PAGE GOES BELOW THIS COMMENT */
