@@ -15,6 +15,7 @@
   --col11: calc(var(--col10) + var(--cg));
   --col12: calc(var(--col11) + var(--cg));
 
+  --ml0: var(--half-gap);
   --ml1: calc(var(--col1) + 3 * var(--half-gap));
   --ml2: calc(var(--ml1) + var(--cg));
   --ml3: calc(var(--ml2) + var(--cg));
@@ -46,6 +47,12 @@
   float: left;
   margin-left: var(--half-gap);
   margin-right: var(--half-gap);
+}
+.row > .reverse {
+  float: right;
+}
+.row > .forward {
+  float: left;
 }
 .row > .col-1 {
   width: var(--col1);
@@ -168,6 +175,9 @@
     width: var(--col12);
   }
 
+  .row > .ml-sm-0 {
+    margin-left: var(--ml0);
+  }
   .row > .ml-sm-1 {
     margin-left: var(--ml1);
   }
@@ -207,6 +217,12 @@
   }
   .row > .hidden-sm {
     display: none;
+  }
+  .row > .reverse-sm {
+    float: right;
+  }
+  .row > .forward-sm {
+    float: left;
   }
 }
 
@@ -257,6 +273,9 @@
     width: var(--col12);
   }
 
+  .row > .ml-md-0 {
+    margin-left: var(--ml0);
+  }
   .row > .ml-md-1 {
     margin-left: var(--ml1);
   }
@@ -296,6 +315,12 @@
   }
   .row > .hidden-md {
     display: none;
+  }
+  .row > .reverse-md {
+    float: right;
+  }
+  .row > .forward-md {
+    float: left;
   }
 }
 
@@ -345,6 +370,9 @@
     width: var(--col12);
   }
 
+  .row > .ml-lg-0 {
+    margin-left: var(--ml0);
+  }
   .row > .ml-lg-1 {
     margin-left: var(--ml1);
   }
@@ -384,6 +412,12 @@
   }
   .row > .hidden-lg {
     display: none;
+  }
+  .row > .reverse-lg {
+    float: right;
+  }
+  .row > .forward-lg {
+    float: left;
   }
 }
 
@@ -434,6 +468,9 @@
     width: var(--col12);
   }
 
+  .row > .ml-xl-0 {
+    margin-left: var(--ml0);
+  }
   .row > .ml-xl-1 {
     margin-left: var(--ml1);
   }
@@ -474,9 +511,15 @@
   .row > .hidden-xl {
     display: none;
   }
+  .row > .reverse-xl {
+    float: right;
+  }
+  .row > .forward-xl {
+    float: left;
+  }
 }
 
-@media (min-width: 1399px) {
+/* @media (min-width: 1399px) {
   :root {
     --container-padding: 80px;
   }
@@ -522,6 +565,9 @@
     width: var(--col12);
   }
 
+  .row > .ml-xxl-0 {
+    margin-left: var(--ml0);
+  }
   .row > .ml-xxl-1 {
     margin-left: var(--ml1);
   }
@@ -562,4 +608,10 @@
   .row > .hidden-xxl {
     display: none;
   }
+.row > .reverse-xxl {
+  float: right;
 }
+.row > .forward-xxl {
+  float: left;
+}
+} */
