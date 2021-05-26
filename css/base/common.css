@@ -44,11 +44,7 @@
 
 .bg-gradient {
   background: var(--color-primary);
-  background: linear-gradient(
-    60deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  background: var(--color-gradient);
 }
 
 .bg-light {

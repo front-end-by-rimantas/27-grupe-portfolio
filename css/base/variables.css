@@ -4,4 +4,9 @@
   --color-dark: #000;
   --color-grey: #565656;
   --color-light: #f6f9fe;
+  --color-gradient: linear-gradient(
+    60deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
 }

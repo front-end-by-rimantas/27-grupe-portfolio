@@ -1,0 +1,47 @@
+.btn {
+  display: inline-block;
+  padding: 0.9em 1.5em;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1em;
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  background: var(--color-primary);
+  background: var(--color-gradient);
+  cursor: pointer;
+  transition: all 0.8s;
+}
+.btn:hover {
+  box-shadow: 0 8px 20px #0003;
+}
+.btn.round {
+  padding: 0.9em 2em;
+  border-radius: 1.4em;
+}
+.btn.full-width {
+  width: 100%;
+}
+.btn.small {
+  font-size: 14px;
+}
+.btn.big {
+  font-size: 24px;
+}
+
+.btn.white {
+  background: #fff;
+  color: var(--color-grey);
+}
+.btn.white:hover {
+  background: var(--color-gradient);
+  color: #fff;
+}
+
+.btn > .fa {
+  margin-right: 1em;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
