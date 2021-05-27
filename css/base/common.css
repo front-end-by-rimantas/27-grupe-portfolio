@@ -1,0 +1,52 @@
+.section-title {
+  margin-bottom: 25px;
+  font-size: 44px;
+  text-align: center;
+  position: relative;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--color-primary);
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.section-title.no-line::before {
+  display: none;
+}
+.section-description {
+  font-size: 17px;
+  color: var(--color-grey);
+  text-align: center;
+}
+.section-title.left {
+  text-align: left;
+}
+.section-title.left::before {
+  left: 0;
+  transform: translateX(0);
+}
+.section-description.left {
+  text-align: left;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-gradient {
+  background: var(--color-primary);
+  background: var(--color-gradient);
+}
+
+.bg-light {
+  background-color: var(--color-light);
+}
