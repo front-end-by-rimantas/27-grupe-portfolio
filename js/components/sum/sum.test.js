@@ -8,6 +8,14 @@ test('2 + 3 = 5', () => {
     expect(sum(2, 3)).toBe(5);
 })
 
+test('2 + 13 = 15', () => {
+    expect(sum(2, 13)).toBe(15);
+})
+
+test('2 + 113 = 115', () => {
+    expect(sum(2, 113)).toBe(115);
+})
+
 test('-2 + -3 = -5', () => {
     expect(sum(-2, -3)).toBe(-5);
 })
