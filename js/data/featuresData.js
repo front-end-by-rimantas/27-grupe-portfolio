@@ -1,7 +1,7 @@
 const featuresData = {
     imgPath: './img/features/',
-    maxItemsPerList: 6,                 // default: 6, all
-    listRenderStrategy: 'first',        // first (default), last, random
+    maxItemsPerList: 6,
+    listRenderStrategy: 'first',
     list: [
         {
             icon: 'featured_image_1.png',

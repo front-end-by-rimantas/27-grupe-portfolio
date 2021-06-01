@@ -18,6 +18,7 @@ class Features {
             return false;
         }
 
+        this.setMaxItemsPerList(this.data.maxItemsPerList);
         this.render();
     }
 
@@ -39,7 +40,41 @@ class Features {
     }
 
     isValidData() {
+        // this.data has to an object
+        if (typeof this.data !== 'object' ||
+            Array.isArray(this.data) ||
+            this.data === null) {
+            return false;
+        }
+
+        // this.data.imgPath has to exist
+        if (typeof this.data.imgPath !== 'string' ||
+            this.data.imgPath === '') {
+            return false;
+        }
+
+        // this.data.list has to exist
+        if (!Array.isArray(this.data.list) ||
+            this.data.list.length === 0) {
+            return false;
+        }
+
         return true;
+    }
+
+    setMaxItemsPerList(itemsCount) {
+        // allowed: integer > 0 | 'all'
+        if (typeof itemsCount === 'number' &&
+            isFinite(itemsCount) &&
+            itemsCount > 0 &&
+            itemsCount % 1 === 0) {
+            this.maxItemsPerList = itemsCount;
+        }
+        if (itemsCount === 'all') {
+            this.maxItemsPerList = itemsCount;
+        }
+
+        return this.maxItemsPerList;
     }
 
     render() {
