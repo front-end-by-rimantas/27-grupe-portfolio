@@ -338,3 +338,148 @@ describe('Kiek elementu sugeneruoti', () => {
         expect(features.maxItemsPerList).toBe('all');
     })
 })
+
+describe('Kokia strategija naudoti generuojant turini', () => {
+    test('jei neduodamas strategy parametras, tai lieka default reiksme', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all'
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras duodamas ne tinkamo tipo (undefined), tai lieka default reiksme', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: undefined
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras duodamas ne tinkamo tipo (number), tai lieka default reiksme', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: 21456
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras duodamas tuscias tekstas, tai lieka default reiksme', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: ''
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras duodamas ne tuscias tekstas, taciau netinkama reiksme, tai lieka default reiksme', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: 'asd'
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras "first", tai atnaujinama reiksme i "first"', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: 'first'
+        });
+        expect(features.listRenderStrategy).toBe('first');
+    })
+
+    test('jei strategy parametras "last", tai atnaujinama reiksme i "last"', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: 'last'
+        });
+        expect(features.listRenderStrategy).toBe('last');
+    })
+
+    test('jei strategy parametras "random", tai atnaujinama reiksme i "random"', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ],
+            maxItemsPerList: 'all',
+            listRenderStrategy: 'random'
+        });
+        expect(features.listRenderStrategy).toBe('random');
+    })
+})

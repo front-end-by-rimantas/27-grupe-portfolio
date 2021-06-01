@@ -19,6 +19,7 @@ class Features {
         }
 
         this.setMaxItemsPerList(this.data.maxItemsPerList);
+        this.setRenderStrategy(this.data.listRenderStrategy);
         this.render();
     }
 
@@ -75,6 +76,16 @@ class Features {
         }
 
         return this.maxItemsPerList;
+    }
+
+    setRenderStrategy(strategyName) {
+        if (typeof strategyName === 'string' &&
+            strategyName.length > 0 &&
+            this.allowedRenderStrategies.includes(strategyName)) {
+            this.listRenderStrategy = strategyName;
+        }
+
+        return this.listRenderStrategy;
     }
 
     render() {
