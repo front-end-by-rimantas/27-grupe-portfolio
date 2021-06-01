@@ -20,6 +20,7 @@ class Features {
 
         this.setMaxItemsPerList(this.data.maxItemsPerList);
         this.setRenderStrategy(this.data.listRenderStrategy);
+        this.filterDataList();
         this.render();
     }
 
@@ -86,6 +87,50 @@ class Features {
         }
 
         return this.listRenderStrategy;
+    }
+
+    isValidImageFile(fileName) {
+        if (typeof fileName !== 'string' ||
+            fileName.length < 5) {
+            return false;
+        }
+
+        const allowedExtensions = ['png', 'jpg'];
+        const fileParts = fileName.split('.');
+        const extension = fileParts[fileParts.length - 1];
+        if (fileParts.length < 2 ||
+            fileParts[0] === '' ||
+            extension.length < 3 ||
+            !allowedExtensions.includes(extension)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    filterDataList() {
+        const filteredData = [];
+
+        for (const item of this.data.list) {
+            if (typeof item !== 'object' ||
+                Array.isArray(item) ||
+                item === null ||
+                typeof item.icon !== 'string' ||
+                item.icon === '' ||
+                !this.isValidImageFile(item.icon) ||
+                typeof item.title !== 'string' ||
+                item.title === '' ||
+                typeof item.description !== 'string' ||
+                item.description === '' ||
+                typeof item.active !== 'boolean' ||
+                !item.active ||
+                Object.keys(item).length !== 4) {
+                continue;
+            }
+            filteredData.push(item);
+        }
+
+        this.data.list = filteredData;
     }
 
     render() {

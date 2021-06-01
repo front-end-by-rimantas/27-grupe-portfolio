@@ -483,3 +483,380 @@ describe('Kokia strategija naudoti generuojant turini', () => {
         expect(features.listRenderStrategy).toBe('random');
     })
 })
+
+describe('Duomenu saraso filtravimas, paliekant tik teisingus irasus', () => {
+    test('jei duodamas tuscias sarasas, tai toks ir lieka', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: []
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei sarase ne tinkamo tipo elementas (number), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                48565
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei sarase ne tinkamo tipo elementas (array), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                []
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei sarase ne tinkamo tipo elementas (null), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                null
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei sarase ne tinkamos reiksmes elementas (empty object), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {}
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon reiksme ne tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 1455
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon reiksme tuscias tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: ''
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento title reiksme ne tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png'
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento title reiksme tuscias tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: ''
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento description reiksme ne tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento description reiksme tuscias tekstas, tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: ''
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme ne boolean (neduotas), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme ne boolean (undefined), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: undefined
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme ne boolean (zero), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: 0
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme ne boolean (empty string), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: ''
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme ne boolean (null), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: null
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento active reiksme yra boolean (false), tai sarasas lieka tuscias', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: false
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei sarase yra tinkamas elementas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(1);
+    })
+
+    test('jei sarase yra nereikalingu keys, tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true,
+                    hacker: 'if you allow extra keys, I will hack you 😎🐱‍👤'
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon nera priimtinas failas (nera tasko), tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'featured_image_1png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon nera priimtinas failas (empty local part), tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: '.pngasd',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon nera priimtinas failas (empty file extension part), tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'filename.',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon nera priimtinas failas (netinkamas file extension part), tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'filename.pn',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon nera priimtinas failas (netinkamas file extension: bmp), tai elementas ismetamas', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'filename.bmp',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(0);
+    })
+
+    test('jei elemento icon yra png failas, tai paliekam', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'filename.png',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(1);
+    })
+
+    test('jei elemento icon yra jpg failas, tai paliekam', () => {
+        document.body.innerHTML = '<div id="features_block"></div>';
+        const features = new Features('#features_block', {
+            imgPath: './',
+            list: [
+                {
+                    icon: 'filename.jpg',
+                    title: 'Fully functional',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+                    active: true
+                }
+            ]
+        });
+        expect(features.data.list.length).toBe(1);
+    })
+})
