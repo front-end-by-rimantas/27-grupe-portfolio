@@ -1,0 +1,5 @@
+class Testimonials {
+
+}
+
+export { Testimonials }
