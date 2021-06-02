@@ -7,6 +7,7 @@ class Features {
         this.maxItemsPerList = 'all';       // default: all, allowed: any postivie integer
         this.allowedRenderStrategies = ['first', 'last', 'random'];
         this.listRenderStrategy = this.allowedRenderStrategies[0];
+        this.dataForRendering = [];
 
         this.init();
     }
@@ -21,6 +22,7 @@ class Features {
         this.setMaxItemsPerList(this.data.maxItemsPerList);
         this.setRenderStrategy(this.data.listRenderStrategy);
         this.filterDataList();
+        this.selectDataForRendering();
         this.render();
     }
 
@@ -133,17 +135,79 @@ class Features {
         this.data.list = filteredData;
     }
 
+    selectDataForRendering() {
+        if (this.maxItemsPerList === 'all') {
+            this.dataForRendering = this.data.list;
+        }
+
+        if (this.listRenderStrategy === 'first') {
+            this.dataForRendering = this.data.list.slice(0, this.maxItemsPerList);
+        }
+
+        if (this.listRenderStrategy === 'last') {
+            this.dataForRendering = this.data.list.slice(-this.maxItemsPerList);
+        }
+
+        if (this.listRenderStrategy === 'random') {
+            const randomIndexes = [];
+            const itemsCount = this.data.list.length;
+
+            while (randomIndexes.length < this.maxItemsPerList) {
+                const index = Math.floor(Math.random() * itemsCount);
+                if (!randomIndexes.includes(index)) {
+                    randomIndexes.push(index);
+                }
+            }
+
+            this.dataForRendering = [];
+            for (const i of randomIndexes) {
+                this.dataForRendering.push(this.data.list[i]);
+            }
+        }
+
+        return this.dataForRendering;
+    }
+
     render() {
         let HTML = '';
 
-        for (const feature of this.data.list) {
-            HTML += `<div class="col-12 col-md-6 col-lg-4">
-                        FEATURE 1
+        for (const feature of this.dataForRendering) {
+            HTML += `<div class="item">
+                        <img class="icon" src="${this.data.imgPath + feature.icon}" alt="${feature.title} feature">
+                        <h4 class="title">${feature.title}</h4>
+                        <p class="description">${feature.description}</p>
                     </div>`;
         }
 
+        this.DOM.classList.add('features');
         this.DOM.innerHTML = HTML;
     }
 }
 
 export { Features }
+
+/*
+
+const itemsCount = 12; // nes turime duomenu sarasa su 12 elementu
+
+index = Math.floor(Math.random() * itemsCount)
+
+Math.random() grazina atsitiktini skaiciu intervale [0 ... 1)
+salyginai panasu butu, jei rasytume [0 ... 1) -> [0 ... 0.99999999999999999]
+
+jeigu
+random = 0;
+index = Math.floor(Math.random() * itemsCount) = Math.floor(0 * 12) = Math.floor(0) = 0
+
+random = 0.99999999;
+index = Math.floor(Math.random() * itemsCount) = Math.floor(0.99999999 * 12) = Math.floor(11.9999999) = 11
+
+random = 0.5;
+index = Math.floor(Math.random() * itemsCount) = Math.floor(0.5 * 12) = Math.floor(6) = 6
+
+random = 0.4;
+index = Math.floor(Math.random() * itemsCount) = Math.floor(0.4 * 12) = Math.floor(4.8) = 4
+
+
+
+*/

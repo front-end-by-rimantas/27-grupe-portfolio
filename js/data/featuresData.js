@@ -12,7 +12,7 @@ const featuresData = {
         {
             icon: 'featured_image_2.png',
             title: 'Live Chat',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos. Veritatis culpa expedita dignissimos.',
             active: true
         },
         {
@@ -23,61 +23,61 @@ const featuresData = {
         },
         {
             icon: 'featured_image_4.png',
-            title: 'Fully functional',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
+            title: 'Easy to Customize',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
             active: true
         },
         {
             icon: 'featured_image_5.png',
-            title: 'Live Chat',
+            title: 'Responsive Design',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true,
             hacker: 'if you allow extra keys, I will hack you 😎🐱‍👤'
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: 'true'
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: 1
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: '',
             active: true
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             description: 489562,
             active: true
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data',
+            title: 'Help Documentation',
             active: true
         },
         {
@@ -182,13 +182,13 @@ const featuresData = {
         },
         {
             icon: 'featured_image_4.png',
-            title: 'Fully functional second',
+            title: 'Easy to Customize second',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: false
         },
         {
             icon: 'featured_image_5.png',
-            title: 'Live Chat second',
+            title: 'Responsive Design second',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: false
         },
@@ -218,19 +218,19 @@ const featuresData = {
         },
         {
             icon: 'featured_image_4.png',
-            title: 'Fully functional second',
+            title: 'Easy to Customize second',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true
         },
         {
             icon: 'featured_image_5.png',
-            title: 'Live Chat second',
+            title: 'Responsive Design second',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true
         },
         {
             icon: 'featured_image_6.png',
-            title: 'Secure Data second',
+            title: 'Help Documentation second',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos.',
             active: true
         },

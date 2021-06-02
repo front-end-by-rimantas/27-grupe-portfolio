@@ -1,6 +1,40 @@
-.features {
+.features.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
 .features > .item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px #0002;
+}
+.features > .item > .icon {
+  height: 60px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 .features > .item > .title {
+  font-size: 24px;
+}
+.features > .item > .description {
+  font-size: 17px;
+  line-height: 25px;
+  color: #777;
+}
+
+@media (min-width: 767px) {
+  .features.row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 991px) {
+  .features.row {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
