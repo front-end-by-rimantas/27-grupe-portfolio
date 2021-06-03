@@ -9,6 +9,7 @@
 
 /* components import */
 @import './components/button.css';
+@import './components/carousel.css';
 @import './components/features.css';
 
 /* CUSTOM STYLES FOR HOME PAGE GOES BELOW THIS COMMENT */

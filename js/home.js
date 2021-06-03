@@ -11,4 +11,4 @@ import { testimonialsData } from './data/testimonialsData.js';
 new Features('#features_block', featuresData);
 
 new Carousel('#interface_block', Interface, interfaceData);
-new Carousel('#testimonials_block', Testimonials, testimonialsData);
+// new Carousel('#testimonials_block', Testimonials, testimonialsData);
