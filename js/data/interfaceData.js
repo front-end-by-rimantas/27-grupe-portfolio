@@ -3,19 +3,19 @@ const interfaceData = {
     itemsPerView: [
         {
             minWidth: 0,
-            itemCount: 1
-        },
-        {
-            minWidth: 500,
-            itemCount: 2
-        },
-        {
-            minWidth: 800,
-            itemCount: 3
+            itemsCount: 1
         },
         {
             minWidth: 1100,
-            itemCount: 4
+            itemsCount: 4
+        },
+        {
+            minWidth: 500,
+            itemsCount: 2
+        },
+        {
+            minWidth: 800,
+            itemsCount: 3
         },
     ],
     list: [

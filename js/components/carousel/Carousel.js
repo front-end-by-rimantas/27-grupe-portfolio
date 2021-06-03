@@ -5,6 +5,7 @@ class Carousel {
         this.data = data;
 
         this.DOM = null;
+        this.itemsPerView = 1;
 
         this.init();
     }
@@ -15,7 +16,10 @@ class Carousel {
             return false;
         }
 
-        this.render();
+        this.data.itemsPerView = this.data.itemsPerView.sort((a, b) => a.minWidth - b.minWidth);
+        this.itemsPerView = this.calculateItemsPerViewValue();
+        this.render(this.itemsPerView);
+        this.addEvents();
     }
 
     isValidSelector() {
@@ -31,41 +35,72 @@ class Carousel {
         return !!this.DOM;
     }
 
-    render() {
+    generateItems() {
         const itemsCount = this.data.list.length;
-        const itemsPerView = 4;
-        const listWidth = itemsCount / itemsPerView * 100;
         const itemWidth = 100 / itemsCount;
-        const singleMargin = 100 / itemsPerView;
+        let HTML = '';
+
+        for (let i = 0; i < itemsCount; i++) {
+            HTML += `<div class="item" style="width: ${itemWidth}%;">ITEM</div>`;
+        }
+
+        return HTML;
+    }
+
+    generateDots() {
+        const itemsCount = this.data.list.length;
+        let HTML = '';
+
+        for (let i = 0; i < itemsCount; i++) {
+            HTML += `<div class="dot"></div>`;
+        }
+
+        return HTML;
+    }
+
+    render(itemsPerView) {
+        const itemsCount = this.data.list.length;
+        const listWidth = itemsCount / itemsPerView * 100;
 
         const HTML = `<div class="carousel">
                         <div class="gallery">
                             <div class="list" style="width: ${listWidth}%;">
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
-                                <div class="item" style="width: ${itemWidth}%;">ITEM</div>
+                                ${this.generateItems()}
                             </div>
                         </div>
                         <div class="controls">
                             <div class="dots">
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
-                                <div class="dot"></div>
+                                ${this.generateDots()}
                             </div>
                         </div>
                     </div>`;
 
         this.DOM.innerHTML = HTML;
+    }
+
+    calculateItemsPerViewValue() {
+        const responsive = this.data.itemsPerView;
+
+        let itemsToRender = 1;
+        for (let i = 0; i < responsive.length; i++) {
+            if (innerWidth > responsive[i].minWidth) {
+                itemsToRender = responsive[i].itemsCount;
+            }
+        }
+
+        return itemsToRender;
+    }
+
+    addEvents() {
+        window.addEventListener('resize', () => {
+            const itemsToRender = this.calculateItemsPerViewValue();
+
+            // re-render content only if there is new value for this.itemsPerView
+            if (this.itemsPerView !== itemsToRender) {
+                this.render(itemsToRender);
+                this.itemsPerView = itemsToRender;
+            }
+        })
     }
 }
 
