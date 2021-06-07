@@ -61,6 +61,12 @@ class Carousel {
     render(itemsPerView) {
         const itemsCount = this.data.list.length;
         const listWidth = itemsCount / itemsPerView * 100;
+        const clonedData = [
+            ...this.data.list.slice(-itemsPerView),
+            ...this.data.list,
+            ...this.data.list.slice(0, itemsPerView)
+        ];
+        console.log(clonedData);
 
         const HTML = `<div class="carousel">
                         <div class="gallery">

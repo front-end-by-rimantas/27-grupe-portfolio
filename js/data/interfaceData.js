@@ -39,18 +39,6 @@ const interfaceData = {
             src: 'screenshot_5.jpg',
             alt: 'Trending page'
         },
-        {
-            src: 'screenshot_2.jpg',
-            alt: 'Sign in page'
-        },
-        {
-            src: 'screenshot_3.jpg',
-            alt: 'Gallery page'
-        },
-        {
-            src: 'screenshot_4.jpg',
-            alt: 'Map page'
-        },
     ]
 }
 
