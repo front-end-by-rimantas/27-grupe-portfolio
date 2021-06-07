@@ -5,7 +5,10 @@ class Carousel {
         this.data = data;
 
         this.DOM = null;
+        this.listDOM = null;
+        this.allDotsDOM = null;
         this.itemsPerView = 1;
+        this.visibleItemIndex = 0;      // matomoje ekrano dalyje is atvaizduotu elementu labiausiai kaireje stovincio index'as visu duomenu atzvilgiu
 
         this.init();
     }
@@ -18,6 +21,7 @@ class Carousel {
 
         this.data.itemsPerView = this.data.itemsPerView.sort((a, b) => a.minWidth - b.minWidth);
         this.itemsPerView = this.calculateItemsPerViewValue();
+        this.visibleItemIndex = this.itemsPerView;
         this.render(this.itemsPerView);
         this.addEvents();
     }
@@ -35,8 +39,8 @@ class Carousel {
         return !!this.DOM;
     }
 
-    generateItems() {
-        const itemsCount = this.data.list.length;
+    generateItems(data) {
+        const itemsCount = data.length;
         const itemWidth = 100 / itemsCount;
         let HTML = '';
 
@@ -59,19 +63,19 @@ class Carousel {
     }
 
     render(itemsPerView) {
-        const itemsCount = this.data.list.length;
-        const listWidth = itemsCount / itemsPerView * 100;
         const clonedData = [
             ...this.data.list.slice(-itemsPerView),
             ...this.data.list,
             ...this.data.list.slice(0, itemsPerView)
         ];
-        console.log(clonedData);
+        const itemsCount = clonedData.length;
+        const listWidth = itemsCount / itemsPerView * 100;
+        const translate = itemsPerView / clonedData.length * 100;
 
         const HTML = `<div class="carousel">
                         <div class="gallery">
-                            <div class="list" style="width: ${listWidth}%;">
-                                ${this.generateItems()}
+                            <div class="list" style="width: ${listWidth}%; transform: translateX(-${translate}%);">
+                                ${this.generateItems(clonedData)}
                             </div>
                         </div>
                         <div class="controls">
@@ -82,6 +86,8 @@ class Carousel {
                     </div>`;
 
         this.DOM.innerHTML = HTML;
+        this.listDOM = this.DOM.querySelector('.list');
+        this.allDotsDOM = this.DOM.querySelectorAll('.dot');
     }
 
     calculateItemsPerViewValue() {
@@ -105,8 +111,18 @@ class Carousel {
             if (this.itemsPerView !== itemsToRender) {
                 this.render(itemsToRender);
                 this.itemsPerView = itemsToRender;
+
             }
         })
+
+        this.allDotsDOM.forEach((dotDOM, i) => {
+            dotDOM.addEventListener('click', () => {
+                this.visibleItemIndex = this.itemsPerView + i;
+                const translate = this.visibleItemIndex / (this.data.list.length + 2 * this.itemsPerView) * 100;
+
+                this.listDOM.style.transform = `translateX(-${translate}%)`;
+            })
+        });
     }
 }
 
