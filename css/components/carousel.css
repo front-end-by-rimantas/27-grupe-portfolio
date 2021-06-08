@@ -17,7 +17,6 @@
 .carousel .list > .item {
   width: 100%;
   float: left;
-  border: 1px solid #ccc;
 }
 .carousel > .controls {
   display: flex;

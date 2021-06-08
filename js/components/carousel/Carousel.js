@@ -45,7 +45,13 @@ class Carousel {
         let HTML = '';
 
         for (let i = 0; i < itemsCount; i++) {
-            HTML += `<div class="item" style="width: ${itemWidth}%;">ITEM</div>`;
+            const obj = new this.component({
+                ...data[i],
+                imgPath: this.data.imgPath
+            });
+            HTML += `<div class="item" style="width: ${itemWidth}%;">
+                        ${obj.HTML()}
+                    </div>`;
         }
 
         return HTML;
