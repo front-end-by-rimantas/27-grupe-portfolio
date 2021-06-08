@@ -1,5 +1,9 @@
 const testimonialsData = {
     imgPath: './img/testimonials/',
+    controls: {
+        anglesEnabled: true,
+        dotsEnabled: true
+    },
     itemsPerView: [
         {
             minWidth: 0,

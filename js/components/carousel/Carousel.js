@@ -7,6 +7,9 @@ class Carousel {
         this.DOM = null;
         this.listDOM = null;
         this.allDotsDOM = null;
+        this.allAnglesDOM = null;
+        this.dotsEnabled = true;
+        this.anglesEnabled = false;
         this.itemsPerView = 1;
         this.visibleItemIndex = 0;      // matomoje ekrano dalyje is atvaizduotu elementu labiausiai kaireje stovincio index'as visu duomenu atzvilgiu
 
@@ -17,6 +20,14 @@ class Carousel {
         if (!this.isValidSelector() ||
             !this.findElementBySelector()) {
             return false;
+        }
+
+        // controls config update
+        if (typeof this.data.controls.anglesEnabled === 'boolean') {
+            this.anglesEnabled = this.data.controls.anglesEnabled;
+        }
+        if (typeof this.data.controls.dotsEnabled === 'boolean') {
+            this.dotsEnabled = this.data.controls.dotsEnabled;
         }
 
         this.data.itemsPerView = this.data.itemsPerView.sort((a, b) => a.minWidth - b.minWidth);
@@ -68,6 +79,25 @@ class Carousel {
         return HTML;
     }
 
+    generateControls() {
+        let anglePrevious = '';
+        let dotsHTML = '';
+        let angleNext = '';
+
+        if (this.anglesEnabled) {
+            anglePrevious = '<i class="fa fa-angle-left"></i>';
+            angleNext = '<i class="fa fa-angle-right"></i>';
+        }
+
+        if (this.dotsEnabled) {
+            dotsHTML = `<div class="dots">
+                            ${this.generateDots()}
+                        </div>`;
+        }
+
+        return anglePrevious + dotsHTML + angleNext;
+    }
+
     render(itemsPerView) {
         const clonedData = [
             ...this.data.list.slice(-itemsPerView),
@@ -85,15 +115,14 @@ class Carousel {
                             </div>
                         </div>
                         <div class="controls">
-                            <div class="dots">
-                                ${this.generateDots()}
-                            </div>
+                            ${this.generateControls()}
                         </div>
                     </div>`;
 
         this.DOM.innerHTML = HTML;
         this.listDOM = this.DOM.querySelector('.list');
-        this.allDotsDOM = this.DOM.querySelectorAll('.dot');
+        this.allDotsDOM = this.DOM.querySelectorAll('.controls .dot');
+        this.allAnglesDOM = this.DOM.querySelectorAll('.controls > .fa');
     }
 
     calculateItemsPerViewValue() {
@@ -109,6 +138,11 @@ class Carousel {
         return itemsToRender;
     }
 
+    slideAnimation() {
+        const translate = this.visibleItemIndex / (this.data.list.length + 2 * this.itemsPerView) * 100;
+        this.listDOM.style.transform = `translateX(-${translate}%)`;
+    }
+
     addEvents() {
         window.addEventListener('resize', () => {
             const itemsToRender = this.calculateItemsPerViewValue();
@@ -121,14 +155,25 @@ class Carousel {
             }
         })
 
-        this.allDotsDOM.forEach((dotDOM, i) => {
-            dotDOM.addEventListener('click', () => {
-                this.visibleItemIndex = this.itemsPerView + i;
-                const translate = this.visibleItemIndex / (this.data.list.length + 2 * this.itemsPerView) * 100;
+        if (this.dotsEnabled) {
+            this.allDotsDOM.forEach((dotDOM, i) => {
+                dotDOM.addEventListener('click', () => {
+                    this.visibleItemIndex = this.itemsPerView + i;
+                    this.slideAnimation();
+                })
+            });
+        }
 
-                this.listDOM.style.transform = `translateX(-${translate}%)`;
+        if (this.anglesEnabled) {
+            this.allAnglesDOM[0].addEventListener('click', () => {
+                this.visibleItemIndex--;
+                this.slideAnimation();
             })
-        });
+            this.allAnglesDOM[1].addEventListener('click', () => {
+                this.visibleItemIndex++;
+                this.slideAnimation();
+            })
+        }
     }
 }
 

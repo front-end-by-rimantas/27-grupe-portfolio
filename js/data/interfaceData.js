@@ -1,5 +1,9 @@
 const interfaceData = {
     imgPath: './img/interface/',
+    controls: {
+        anglesEnabled: true,
+        dotsEnabled: true,
+    },
     itemsPerView: [
         {
             minWidth: 0,

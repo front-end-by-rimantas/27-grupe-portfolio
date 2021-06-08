@@ -36,3 +36,10 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.carousel > .controls > .fa {
+  width: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+}
