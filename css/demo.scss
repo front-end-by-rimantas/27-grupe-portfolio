@@ -1,0 +1,26 @@
+body {
+    background-color: red;
+}
+
+nav {
+    display: flex;
+    gap: 40px;
+    box-shadow: 0 2px 4px red;
+
+    > a {
+        font-size: 20px;
+        color: red;
+
+        &:hover {
+            color: blue;
+        }
+
+        span {
+            font-size: 40px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

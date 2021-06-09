@@ -1,0 +1,1 @@
+body{background-color:red}nav{display:-webkit-box;display:-ms-flexbox;display:flex;gap:40px;-webkit-box-shadow:0 2px 4px red;box-shadow:0 2px 4px red}nav>a{font-size:20px;color:red}nav>a:hover{color:blue}nav>a span{font-size:40px}nav>a span:hover{text-decoration:underline}
