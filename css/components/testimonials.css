@@ -1,0 +1,24 @@
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.testimonial > img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+.testimonial > .name {
+  font-size: 25px;
+  font-weight: bold;
+}
+.testimonial > .location {
+  font-size: 20px;
+}
+.testimonial > .message {
+  font-size: 18px;
+}
