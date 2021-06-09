@@ -1,5 +1,5 @@
 const interfaceData = {
-    imgPath: './img/interface/',
+    imgPath: '/img/interface/',
     controls: {
         anglesEnabled: true,
         dotsEnabled: true,

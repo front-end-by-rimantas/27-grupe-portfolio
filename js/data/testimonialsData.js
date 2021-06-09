@@ -1,5 +1,5 @@
 const testimonialsData = {
-    imgPath: './img/testimonials/',
+    imgPath: '/img/testimonials/',
     controls: {
         anglesEnabled: true,
         dotsEnabled: true
